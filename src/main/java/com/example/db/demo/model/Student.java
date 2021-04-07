@@ -14,20 +14,20 @@ public class Student {
     private String lastName;
     private int age;
     private boolean Gender;
-    private String userDescription;
+    private String studentDescription;
 
 
     public Student() {
 
     }
 
-    public Student(String firstName, String lastName, int age, boolean Gender, String userDescription) {
+    public Student(String firstName, String lastName, int age, boolean Gender, String studentDescription) {
 
         this.firstName =firstName;
         this.lastName =lastName;
         this.age =age;
         this.Gender = Gender;
-        this.userDescription =userDescription;
+        this.studentDescription = studentDescription;
 
     }
 
@@ -72,12 +72,12 @@ public class Student {
         Gender = gender;
     }
 
-    public String getUserDescription() {
-        return userDescription;
+    public String getStudentDescription() {
+        return studentDescription;
     }
 
-    public void setUserDescription(String userDescription) {
-        this.userDescription = userDescription;
+    public void setStudentDescription(String userDescription) {
+        this.studentDescription = userDescription;
     }
 
 
