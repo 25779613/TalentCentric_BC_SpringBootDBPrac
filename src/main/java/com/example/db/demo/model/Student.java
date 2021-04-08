@@ -13,7 +13,7 @@ public class Student {
     private String firstName;
     private String lastName;
     private int age;
-    private boolean Gender;
+    private Character gender;
     private String studentDescription;
 
 
@@ -21,12 +21,12 @@ public class Student {
 
     }
 
-    public Student(String firstName, String lastName, int age, boolean Gender, String studentDescription) {
+    public Student(String firstName, String lastName, int age, Character Gender, String studentDescription) {
 
         this.firstName =firstName;
         this.lastName =lastName;
         this.age =age;
-        this.Gender = Gender;
+        this.gender = Gender;
         this.studentDescription = studentDescription;
 
     }
@@ -64,12 +64,12 @@ public class Student {
         this.age = age;
     }
 
-    public boolean isGender() {
-        return Gender;
+    public Character getGender() {
+        return gender;
     }
 
-    public void setGender(boolean gender) {
-        Gender = gender;
+    public void setGender(Character gender) {
+        this.gender = gender;
     }
 
     public String getStudentDescription() {
