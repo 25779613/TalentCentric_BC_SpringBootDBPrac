@@ -1,6 +1,8 @@
 package com.example.db.demo.controller;
 
 import com.example.db.demo.model.Student;
+import com.example.db.demo.repository.StudentRepo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,8 +14,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 public class UserController {
 
+    @Autowired
+    StudentRepo studentRepo;
+
     @PostMapping("/add")
-    public String saveStudent(@RequestParam String firstName,@RequestParam String lastName,@RequestParam int age,@RequestParam Character gender,@RequestParam String studentDetails) {
+    public String saveStudent(@RequestParam String firstName, @RequestParam String lastName, @RequestParam int age, @RequestParam String gender, @RequestParam String studentDetails) {
 
         Student student = new Student();
         student.setFirstName(firstName);
@@ -21,12 +26,13 @@ public class UserController {
         student.setAge(age);
         student.setGender(gender);
         student.setStudentDescription(studentDetails);
-        return "<<Student saved>>";
+        studentRepo.save(student);
+        return "Display";
     }
 
     @GetMapping("/getAll")
     public String getStudents() {
 
-        return "<<All Students>>";
+        return "Display";
     }
 }
