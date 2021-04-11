@@ -4,6 +4,7 @@ import com.example.db.demo.model.Student;
 import com.example.db.demo.repository.StudentRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,7 +13,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @RequestMapping("/Student")
 
-public class UserController {
+public class StudentController {
+    Model model;
 
     @Autowired
     StudentRepo studentRepo;
@@ -27,12 +29,22 @@ public class UserController {
         student.setGender(gender);
         student.setStudentDescription(studentDetails);
         studentRepo.save(student);
-        return "Display";
+        return "displayStudent";
     }
 
     @GetMapping("/getAll")
     public String getStudents() {
 
-        return "Display";
+        Iterable<Student> student = studentRepo.findAll();
+        model.addAttribute("students", student);
+
+      /*  for(Student stud : student)
+        {
+            System.out.println(stud.getFirstName());
+        }*/
+
+
+
+        return "displayStudent";
     }
 }

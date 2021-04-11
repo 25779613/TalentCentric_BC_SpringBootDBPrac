@@ -12,13 +12,16 @@ public class Subject {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer subjectCode;
     private String subjectName;
+    private String subjectDescription;
 
     public Subject() {
 
     }
 
-    public Subject(String subjectName) {
-        this.subjectName =subjectName;
+    public Subject(String subjectName ,String subjectDescription) {
+
+        this.subjectName = subjectName;
+        this.subjectDescription = subjectDescription;
     }
 
     public Integer getSubjectCode() {
@@ -36,6 +39,10 @@ public class Subject {
     public void setSubjectName(String subjectName) {
         this.subjectName = subjectName;
     }
+
+    public String getSubjectDescription() { return subjectDescription; }
+
+    public void setSubjectDescription(String subjectDescription) { this.subjectDescription = subjectDescription; }
 
 
 }
