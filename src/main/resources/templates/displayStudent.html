@@ -17,7 +17,14 @@
             <li th:text="${student.getLastName()}"></li>
         </div>
 
-    </ul>
+    </ul><br>
+
+    <form action="/Student/delete" method="POST" >
+
+        <input name = "studentID" placeholder="Enter user ID">
+        <button type="submit" > Delete Student</button>
+    </form>
+
 
 
 </div>

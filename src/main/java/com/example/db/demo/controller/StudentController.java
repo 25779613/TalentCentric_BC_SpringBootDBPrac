@@ -5,10 +5,7 @@ import com.example.db.demo.repository.StudentRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/Student")
@@ -44,6 +41,13 @@ public class StudentController {
         }*/
 
 
+        return "displayStudent";
+    }
+
+    @DeleteMapping("/delete")
+    public String deleteStudent(@RequestParam Integer studentID) {
+
+        studentRepo.deleteById(studentID);
 
         return "displayStudent";
     }
