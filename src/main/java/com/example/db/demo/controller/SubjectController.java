@@ -22,7 +22,7 @@ public class SubjectController{
         subject.setSubjectName(subjectName);
         subject.setSubjectDescription(subjectDescription);
         subjectRepo.save(subject);
-        return "subject saved";
+        return "subjectIndex";
 
 
     }

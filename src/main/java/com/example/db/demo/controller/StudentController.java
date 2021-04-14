@@ -7,11 +7,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.ManyToMany;
+
 @Controller
 @RequestMapping("/Student")
 
 public class StudentController {
     Model model;
+
+
 
     @Autowired
     StudentRepo studentRepo;
@@ -44,7 +48,7 @@ public class StudentController {
         return "displayStudent";
     }
 
-    @DeleteMapping("/delete")
+    @PostMapping("/delete")
     public String deleteStudent(@RequestParam Integer studentID) {
 
         studentRepo.deleteById(studentID);
