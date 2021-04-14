@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8" xmlns:th  ="http://www.thymeleaf.org/">
+    <title>Title</title>
+</head>
+<body>
+
+<h1>Find Student</h1><br>
+
+<div class="getStudent">
+    <form action="Student/getStudent" method="GET">
+        <input name="studentID" placeholder="Enter Student id">
+        <button type="submit"> submit</button>
+    </form>
+
+</div><br>
+<h1>student details</h1>
+<h2 th:text =${student}></h2>
+
+</body>
+</html>

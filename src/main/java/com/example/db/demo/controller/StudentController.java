@@ -6,15 +6,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.persistence.ManyToMany;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/Student")
 
 public class StudentController {
-    Model model;
-
+    //Model model;
 
 
     @Autowired
@@ -34,7 +35,7 @@ public class StudentController {
     }
 
     @GetMapping("/getAll")
-    public String getStudents() {
+    public String getStudents(Model model) {
 
         Iterable<Student> student = studentRepo.findAll();
         model.addAttribute("students", student);
@@ -54,5 +55,18 @@ public class StudentController {
         studentRepo.deleteById(studentID);
 
         return "displayStudent";
+    }
+
+    @GetMapping("/getStudent")
+    public ModelAndView getStudent(@RequestParam Integer studentID) {
+
+        ModelAndView mv = new ModelAndView("displayCurrentStudent");
+        Student student = studentRepo.findById(studentID).orElse(new Student());
+        mv.addObject(student);
+
+
+
+
+        return mv;
     }
 }
