@@ -2,6 +2,7 @@ package com.example.db.demo.model;
 
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Student {
@@ -15,6 +16,9 @@ public class Student {
     private int age;
     private String gender;
     private String studentDescription;
+
+    @OneToMany(targetEntity = Subject.class,cascade = CascadeType.ALL)
+    List<Subject> subjects;
 
 
     public Student() {

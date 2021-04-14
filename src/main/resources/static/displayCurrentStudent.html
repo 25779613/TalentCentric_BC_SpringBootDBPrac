@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8" >
+    <title>Title</title>
+</head>
+
+<h1>Find Student</h1><br>
+
+<div class="getStudent">
+    <!--<form action="/Student/getStudent" method="GET">
+        <input name="studentID" placeholder="Enter Student id">
+        <button type="submit"> submit</button>
+    </form>-->
+
+</div>
+<br>
+<div>     <!--remove initial slash and try searching twice-->
+    <form action="/Student/getSpecificStudent" method="GET">
+        <input name="studentName" placeholder="Enter Student Name">
+        <button type="submit" name="name"> Submit</button>
+    </form>
+</div>
+<!--<h1>student details(by id)</h1>
+<h1 th:text="${singleStudent.getFirstName()}"></h1>
+<br>-->
+<h1>student details</h1>
+<div class="container">
+    <ul th:each="student :${foundStudent}">
+        <div class="student-content">
+            <li th:text="${student.getStudentID()}"></li>
+            <li th:text="${student.getFirstName()}"></li>
+            <li th:text="${student.getLastName()}"></li>
+        </div>
+    </ul>
+</div>
+</html>

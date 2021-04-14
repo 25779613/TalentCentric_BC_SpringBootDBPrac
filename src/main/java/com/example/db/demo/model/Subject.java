@@ -1,9 +1,7 @@
 package com.example.db.demo.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Subject {
@@ -13,6 +11,11 @@ public class Subject {
     private Integer subjectCode;
     private String subjectName;
     private String subjectDescription;
+
+    @OneToMany(targetEntity = Student.class,cascade = CascadeType.ALL)
+    List<Student> student;
+
+
 
     public Subject() {
 

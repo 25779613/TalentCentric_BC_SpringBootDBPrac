@@ -27,6 +27,13 @@ public class SubjectController{
 
     }
 
+    @PostMapping("/delete")
+    public String delete(@RequestParam Integer subjectID) {
+
+        subjectRepo.deleteById(subjectID);
+        return "subjectMain";
+    }
+
 }
 
 

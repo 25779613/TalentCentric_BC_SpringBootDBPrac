@@ -8,8 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.persistence.ManyToMany;
-import java.util.Optional;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequestMapping("/Student")
@@ -31,7 +31,7 @@ public class StudentController {
         student.setGender(gender);
         student.setStudentDescription(studentDetails);
         studentRepo.save(student);
-        return "displayStudent";
+        return "displayAllStudent";
     }
 
     @GetMapping("/getAll")
@@ -40,21 +40,25 @@ public class StudentController {
         Iterable<Student> student = studentRepo.findAll();
         model.addAttribute("students", student);
 
-      /*  for(Student stud : student)
+        for(Student stud : student)
         {
             System.out.println(stud.getFirstName());
-        }*/
+        }
 
-
-        return "displayStudent";
+        return "displayAllStudent";
     }
 
     @PostMapping("/delete")
     public String deleteStudent(@RequestParam Integer studentID) {
 
-        studentRepo.deleteById(studentID);
-
-        return "displayStudent";
+        try{
+            studentRepo.deleteById(studentID);
+        }
+        catch(Exception e)
+        {
+            System.out.println("User to be delete not found by id");
+        }
+        return "displayAllStudent";
     }
 
     @GetMapping("/getStudent")
@@ -62,11 +66,21 @@ public class StudentController {
 
         ModelAndView mv = new ModelAndView("displayCurrentStudent");
         Student student = studentRepo.findById(studentID).orElse(new Student());
-        mv.addObject(student);
+        mv.addObject("singleStudent", student);
+        return mv;
+    }
 
-
-
-
+    @GetMapping("/getSpecificStudent")
+    public ModelAndView getSpecificStudent(@RequestParam String studentName) {
+        List<Student> foundStudent = new <Student>ArrayList();
+        ModelAndView mv = new ModelAndView("displayCurrentStudent");
+        List<Student> student = (List<Student>) studentRepo.findAll();
+        for (Student stud:student)
+        {
+            if(stud.getFirstName().compareToIgnoreCase(studentName) == 0)
+                foundStudent.add(stud);
+        }
+        mv.addObject("foundStudent",foundStudent);
         return mv;
     }
 }
